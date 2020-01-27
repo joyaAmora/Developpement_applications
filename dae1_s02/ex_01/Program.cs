@@ -6,7 +6,15 @@ namespace ex_01
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var bumbo = new Car()
+            {
+                Brand = "Car",
+                Model = "A2",
+                Year = 1985,
+                Color = "Yellow"
+            };
+            
+            Console.WriteLine(bumbo.Display());
         }
     }
 }
