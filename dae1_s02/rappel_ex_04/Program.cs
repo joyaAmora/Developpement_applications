@@ -10,7 +10,6 @@ namespace rappel_ex_04
             long total = 0; 
             int nb = 2;
             int Ctr = 0;
-            isPrime(nb);
             Console.WriteLine("Voici le total des 500 nombres premiers ");
             while (Ctr < 500)
             {
