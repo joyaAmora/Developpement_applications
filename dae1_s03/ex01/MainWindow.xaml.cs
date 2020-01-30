@@ -24,5 +24,10 @@ namespace ex01
         {
             InitializeComponent();
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Allo"); // C'est ici qu'on met le code qui est appelé par MainWindow
+        }
     }
 }
