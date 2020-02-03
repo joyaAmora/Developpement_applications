@@ -5,11 +5,33 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ex01"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800"
+        Title="MainWindow" Height="450" Width="800" MinWidth="600"
         Loaded="Window_Loaded">
+    <!-- en faisant F12 sur  Window_Loaded on a accès directement au code-->
 
 
-    <Grid>
-        
+    <Grid Margin="5">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Button Height="50" Width="100" Grid.Column="1" Grid.Row="1" Click="Button_Click">Bouton Régulier</Button>
+        <Button Height="50" Width="100" Grid.Column="3" Grid.Row="1" Click="Button_Click_repeteur">Bouton Répéteur</Button>
+        <Button Height="50" Width="100" Grid.Column="2" Grid.Row="2" Click="Button_Click_Bascule">Bouton Bascule</Button>
+
+        <CheckBox Height="50" Width="100" Grid.Column="1" Grid.Row="4" IsThreeState="True" Checked="CheckBox_Checked" Unchecked ="CheckBox_UnChecked" Indeterminate="CheckBox_Indeterminate" Name="checkBox1">CheckBox</CheckBox>
+        <StackPanel Height="50" Width="200" Grid.Column="3" Grid.Row="4">
+            <RadioButton Checked="Radio_Checked" Unchecked ="Radio_UnChecked" Name="Radio1">Tu peux me sélectionner</RadioButton>
+            <RadioButton Checked="Radio_Checked" Unchecked ="Radio_UnChecked" Name="Radio2">Ou moi</RadioButton>
+        </StackPanel>
     </Grid>
 </Window>
