@@ -1,0 +1,35 @@
+﻿<Window x:Class="ex04.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ex04"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Button Width="150" Height="25" Click="Button_Click">
+            <StackPanel Orientation="Horizontal">
+                <Ellipse Margin="0 0 6 0" Fill="Red" Width="15" Height="15" Name="ellipse1"/>
+                <TextBlock Text="Bouton complexe"/>
+            </StackPanel>
+        </Button>
+        <Label Grid.Row="1" Margin="10">Message:</Label>
+        <TextBox Grid.Row="1" Height="25" Margin="10,40" VerticalAlignment="Top" Name="textBox1"></TextBox>
+        <GroupBox Header="Choose a color" Grid.Row="0" Grid.Column="1" Margin="5">
+            <StackPanel>
+                <RadioButton Checked="Radio_Button_Selected" Name="red">Red</RadioButton>
+                <RadioButton Checked="Radio_Button_Selected" Name="blue">Blue</RadioButton>
+                <RadioButton Checked="Radio_Button_Selected" Name="yellow">Yellow</RadioButton>
+            </StackPanel>
+
+        </GroupBox>
+    </Grid>
+</Window>
