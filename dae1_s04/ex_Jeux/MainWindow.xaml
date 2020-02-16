@@ -1,0 +1,45 @@
+﻿<Window x:Class="ex_Jeux.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ex_Jeux"
+        DataContext="{Binding RelativeSource={RelativeSource Self}}"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="42*"></ColumnDefinition>
+            <ColumnDefinition Width="354*"/>
+            <ColumnDefinition Width="397*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Grid.Column="2" Width="75"  Height="150" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5.2,5,0,0">
+            <Label>Titre:</Label>
+            <Label>Edition:</Label>
+            <Label>Année:</Label>
+            <Label>Console:</Label>
+            <Label>Description:</Label>
+        </StackPanel>
+        <StackPanel Grid.Row="0" Grid.Column="2" Width="275"  Height="200" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,5,4.6,0">
+            <TextBlock x:Name="titre" Text="{Binding Path=jeuSelectionne.Titre}" Width="100"  Height="25"></TextBlock>
+            <TextBlock x:Name="edtion" Text="{Binding Path=jeuSelectionne.Edition}" Width="100"  Height="25"></TextBlock>
+            <TextBlock x:Name="annee" Text="{Binding Path=jeuSelectionne.Annee}" Width="100"  Height="25"></TextBlock>
+            <ComboBox Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" Margin="6"  SelectedItem="{Binding jeuSelectionne.Konsole}">
+                <ComboBoxItem Content="PS4"/>
+                <ComboBoxItem Content="XBox"/>
+                <ComboBoxItem Content="Switch"/>
+                <ComboBoxItem Content="PC"/>
+                <ComboBoxItem Content="SNESS"/>
+            </ComboBox>
+            <TextBlock Name="desc" Text="{Binding Path=jeuSelectionne.Desc}" Width="100"  Height="100"></TextBlock>
+        </StackPanel>
+        <Slider Grid.Row="1" Grid.Column="2" VerticalAlignment="Top" Margin="98.2,4.6,98.6,0" Width="200" Value="{Binding Path=jeuSelectionne.Cote}"></Slider>
+        <Image Source="{Binding Path=jeuSelectionne.ImagePath}" Grid.Column="1" Grid.Row="0" Width="200" Height="200" Margin="55.6,5,98.8,5.4"/>
+        <ScrollBar Grid.Row="1" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Top" Margin="5.6,4.6,48.8,0" Width="300" x:Name="scroll"
+                   ValueChanged="ScrollBar_ValueChanged" Minimum="1" Maximum="5" SmallChange="1" LargeChange="3" Height="17"></ScrollBar>
+    </Grid>
+</Window>
