@@ -17,9 +17,9 @@
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        <StackPanel  Width="325" Height="50" VerticalAlignment="Top">
-            <TextBlock VerticalAlignment="Top" HorizontalAlignment="Left" Width="50" >Mes jeux</TextBlock>
-            <Button x:Name="add" Width="50" Height="20" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0 -13" Click="add_Click">
+        <StackPanel  Width="325" Height="50" VerticalAlignment="Top" Orientation="Horizontal">
+            <TextBlock VerticalAlignment="Top" HorizontalAlignment="Left" Width="50" Margin="5">Mes jeux</TextBlock>
+            <Button x:Name="add" Width="50" Height="20" VerticalAlignment="Top" HorizontalAlignment="Right" Click="add_Click" Margin="5">
                 Ajouter
             </Button>
         </StackPanel>
@@ -27,7 +27,7 @@
         <ListView x:Name="listView" Margin="5 25 5 5" Width="325" SelectionChanged="listView_SelectionChanged" ItemsSource="{Binding Jeux}"
                   SelectedItem="{Binding jeuSelectionne}">
             <ListView.ItemTemplate>
-                <DataTemplate>
+                <DataTemplate DataType="{x:Type local:Jeux}">
                     <StackPanel>
                         <TextBlock Text="{Binding Info}" HorizontalAlignment="Left"></TextBlock>
                     </StackPanel>
@@ -42,9 +42,9 @@
             <Label>Description:</Label>
         </StackPanel>
         <StackPanel Grid.Row="0" Grid.Column="2" Width="125"  Height="400" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="7">
-            <TextBox x:Name="titre" Text="{Binding Path=JeuSelectionne.Titre}" Width="100"  Height="25"></TextBox>
-            <TextBox x:Name="edition" Text="{Binding Path=JeuSelectionne.Edition}" Width="100"  Height="25"></TextBox>
-            <TextBox x:Name="annee" Text="{Binding Path=JeuSelectionne.Annee}" Width="100"  Height="25"></TextBox>
+            <TextBox x:Name="titre" Text="{Binding JeuSelectionne.Titre}" Width="100"  Height="25"></TextBox>
+            <TextBox x:Name="edition" Text="{Binding JeuSelectionne.Edition}" Width="100"  Height="25"></TextBox>
+            <TextBox x:Name="annee" Text="{Binding JeuSelectionne.Annee}" Width="100"  Height="25"></TextBox>
             <ComboBox x:Name="consoleSelector" Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" Margin="6" Width="75" 
                       SelectedItem="{Binding JeuSelectionne.Konsole}" ItemsSource="{Binding Konsoles}">
                 <!--<ComboBoxItem Content="PS3"/>
@@ -53,8 +53,8 @@
                 <ComboBoxItem Content="PC"/>
                 <ComboBoxItem Content="SNESS"/>-->
             </ComboBox>
-            <TextBox Name="desc" Text="{Binding Path=JeuSelectionne.Desc}" Width="100"  Height="100"></TextBox>
-            <Slider x:Name="sliderCote" VerticalAlignment="Bottom" Width="100" Value="{Binding Path=JeuSelectionne.Cote}"></Slider>
+            <TextBox Name="desc" Text="{Binding JeuSelectionne.Desc}" Width="100"  Height="100"></TextBox>
+            <Slider x:Name="sliderCote" VerticalAlignment="Bottom" Width="100" Value="{Binding JeuSelectionne.Cote}"></Slider>
         </StackPanel>
         <StackPanel Grid.Row="0" Grid.Column="1">
             <Image x:Name="imgPhoto" Source="{Binding Path=JeuSelectionne.ImagePath}" Grid.Column="1" Grid.Row="0" Width="200" Height="300" 

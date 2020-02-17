@@ -25,6 +25,7 @@ namespace ex_Jeux
             {
                 titre = value;
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(Info));
             }
         }
 
@@ -64,6 +65,7 @@ namespace ex_Jeux
             {
                 desc = value;
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(Info));
             }
         }
         public string ImagePath

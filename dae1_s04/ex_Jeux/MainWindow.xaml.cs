@@ -26,7 +26,8 @@ namespace ex_Jeux
     {
         private Jeux jeuSelectionne;
         int index = 0;
-        public ObservableCollection<Jeux> jeux { get; set; }
+        public event PropertyChangedEventHandler PropertyChanged;
+        public ObservableCollection<Jeux> jeux { get; set; } = new ObservableCollection<Jeux>();
 
         public ObservableCollection<string> Konsoles { get; set; } = new ObservableCollection<string>();
         public Jeux JeuSelectionne { 
@@ -39,9 +40,8 @@ namespace ex_Jeux
 
         public MainWindow()
         {
-            jeux = new ObservableCollection<Jeux>()
-            {
-                new Jeux()
+            jeux.Add(
+                new Jeux
                 {
                     Titre = "Super Mario",
                     Edition = "edition1",
@@ -50,8 +50,9 @@ namespace ex_Jeux
                     Desc = "Super jeu 80's",
                     ImagePath = "images/super-mario.jpg",
                     Cote = 4
-                },
-                new Jeux()
+                });
+            jeux.Add(
+                new Jeux
                 {
                     Titre = "Fire Emblem",
                     Edition = "edition2",
@@ -60,8 +61,9 @@ namespace ex_Jeux
                     Desc = "J'adore!",
                     ImagePath = "images/fire-emblem.jpg",
                     Cote = 5
-                },
-                new Jeux()
+                });
+            jeux.Add(
+                new Jeux
                 {
                     Titre = "Final Fantasy XIII",
                     Edition = "edition3",
@@ -70,8 +72,9 @@ namespace ex_Jeux
                     Desc = "Easy to play",
                     ImagePath = "images/finalFantasy.jpg",
                     Cote = 5
-                },
-                new Jeux()
+                });
+            jeux.Add(
+                new Jeux
                 {
                     Titre = "Super Mario",
                     Edition = "edition1",
@@ -80,8 +83,8 @@ namespace ex_Jeux
                     Desc = "Super jeu 80's",
                     ImagePath = "images/super-mario.jpg",
                     Cote = 4
-                },
-            };
+                });
+
             Konsoles.Add("PS3");
             Konsoles.Add("SNESS");
             Konsoles.Add("PC");
@@ -96,7 +99,6 @@ namespace ex_Jeux
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-        public event PropertyChangedEventHandler PropertyChanged;
 
 
         private void ScrollBar_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
@@ -117,21 +119,25 @@ namespace ex_Jeux
             index = listView.SelectedIndex;
             JeuSelectionne = jeux[index];
             consoleSelector.Text = jeux[index].Konsole;
+            ListView lv = (ListView)sender;
+            JeuSelectionne = (Jeux)lv.SelectedItem;
         }
 
         private void add_Click(object sender, RoutedEventArgs e)
         {
-            var temp = new Jeux()
-            {
-                Titre = titre.Text,
-                Edition = edition.Text,
-                Annee = Convert.ToInt32(annee.Text),
-                Konsole = consoleSelector.Text,
-                Desc = desc.Text,
-                ImagePath = "images/finalFantasy.jpg",
-                Cote = Convert.ToInt32(sliderCote.Value),
-            };
-            jeux.Add(temp);
+            JeuSelectionne = new Jeux();
+            jeux.Add(JeuSelectionne);
+            //var temp = new Jeux()
+            //{
+            //    Titre = titre.Text,
+            //    Edition = edition.Text,
+            //    Annee = Convert.ToInt32(annee.Text),
+            //    Konsole = consoleSelector.Text,
+            //    Desc = desc.Text,
+            //    ImagePath = "images/finalFantasy.jpg",
+            //    Cote = Convert.ToInt32(sliderCote.Value),
+            //};
+            //jeux.Add(temp);
         }
 
         private void Image_MouseRightButtonUp(object sender, MouseButtonEventArgs e)
