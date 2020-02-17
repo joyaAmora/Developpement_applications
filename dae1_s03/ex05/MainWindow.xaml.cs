@@ -24,5 +24,23 @@ namespace ex05
         {
             InitializeComponent();
         }
+
+        private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            Random RandomNumber = new Random();
+
+            Grid.SetRow(hack, RandomNumber.Next(0,2));
+            Grid.SetColumn(hack, RandomNumber.Next(0,2));            
+            
+            Grid.SetRow(logo, RandomNumber.Next(0,2));
+            Grid.SetColumn(logo, RandomNumber.Next(0,2));
+            
+            Grid.SetRow(logo1, RandomNumber.Next(0,2));
+            Grid.SetColumn(logo1, RandomNumber.Next(0,2));
+            
+            Grid.SetRow(bg, RandomNumber.Next(0,2));
+            Grid.SetColumn(bg, RandomNumber.Next(0,2));
+            
+        }
     }
 }

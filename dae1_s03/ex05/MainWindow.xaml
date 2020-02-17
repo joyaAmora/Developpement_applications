@@ -5,8 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ex05"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
+        Title="MainWindow" Height="450" Width="800" ResizeMode="CanResize" SizeChanged="Window_SizeChanged">
+    <Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Image Source="images/pic1.jpg" Grid.Column="0" Grid.Row="0" Name="hack"></Image>
+        <Image Source="images/logo.png" Grid.Column="0" Grid.Row="1" Name="logo"></Image>
+        <Image Source="images/logodark.png" Grid.Column="1" Grid.Row="0" Name="logo1"/>
+        <Image Source="images/pic2.jpg" Grid.Column="1" Grid.Row="1" Name="bg"></Image>
     </Grid>
 </Window>
