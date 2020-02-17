@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -20,13 +22,24 @@ namespace ex_Jeux
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : INotifyPropertyChanged
+    public partial class MainWindow : Window, INotifyPropertyChanged
     {
-        public List<Jeux> jeux { get; set; }
-        public Jeux jeuSelectionne { get; set; }
+        private Jeux jeuSelectionne;
+        int index = 0;
+        public ObservableCollection<Jeux> jeux { get; set; }
+
+        public ObservableCollection<string> Konsoles { get; set; } = new ObservableCollection<string>();
+        public Jeux JeuSelectionne { 
+            get => jeuSelectionne; 
+            set {
+                jeuSelectionne = value;
+                OnPropertyChanged();
+            }
+        }
+
         public MainWindow()
         {
-            jeux = new List<Jeux>()
+            jeux = new ObservableCollection<Jeux>()
             {
                 new Jeux()
                 {
@@ -58,11 +71,25 @@ namespace ex_Jeux
                     ImagePath = "images/finalFantasy.jpg",
                     Cote = 5
                 },
+                new Jeux()
+                {
+                    Titre = "Super Mario",
+                    Edition = "edition1",
+                    Annee = 1980,
+                    Konsole = "SNESS",
+                    Desc = "Super jeu 80's",
+                    ImagePath = "images/super-mario.jpg",
+                    Cote = 4
+                },
             };
-            jeuSelectionne = jeux[0];
+            Konsoles.Add("PS3");
+            Konsoles.Add("SNESS");
+            Konsoles.Add("PC");
+            Konsoles.Add("Switch");
+            JeuSelectionne = jeux[index];
             InitializeComponent();
+            listView.ItemsSource = jeux;
 
-        
         }
 
         private void OnPropertyChanged([CallerMemberName] string propertyName = "")
@@ -74,14 +101,49 @@ namespace ex_Jeux
 
         private void ScrollBar_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            if (scroll.Value > 3)
+            if (scroll.Value > 4)
             {
-                scroll.Value = 3;
+                scroll.Value = 4;
             }
             else
             {
-                jeuSelectionne = jeux[Convert.ToInt32(scroll.Value) - 1];
-                OnPropertyChanged("jeuSelectionne");
+                JeuSelectionne = jeux[Convert.ToInt32(scroll.Value) - 1];
+                consoleSelector.Text = JeuSelectionne.Konsole;
+            }
+        }
+
+        private void listView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            index = listView.SelectedIndex;
+            JeuSelectionne = jeux[index];
+            consoleSelector.Text = jeux[index].Konsole;
+        }
+
+        private void add_Click(object sender, RoutedEventArgs e)
+        {
+            var temp = new Jeux()
+            {
+                Titre = titre.Text,
+                Edition = edition.Text,
+                Annee = Convert.ToInt32(annee.Text),
+                Konsole = consoleSelector.Text,
+                Desc = desc.Text,
+                ImagePath = "images/finalFantasy.jpg",
+                Cote = Convert.ToInt32(sliderCote.Value),
+            };
+            jeux.Add(temp);
+        }
+
+        private void Image_MouseRightButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            OpenFileDialog op = new OpenFileDialog();
+            op.Title = "Select a picture";
+            op.Filter = "All supported graphics|*.jpg;*.jpeg;*.png|" +
+              "JPEG (*.jpg;*.jpeg)|*.jpg;*.jpeg|" +
+              "Portable Network Graphic (*.png)|*.png";
+            if (op.ShowDialog() == true)
+            {
+               imgPhoto.Source = new BitmapImage(new Uri(op.FileName));
             }
         }
     }

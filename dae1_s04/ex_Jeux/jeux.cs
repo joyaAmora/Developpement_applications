@@ -18,7 +18,6 @@ namespace ex_Jeux
         private int cote;
         private string desc;
 
-
         public string Titre
         {
             get => titre;
@@ -84,6 +83,10 @@ namespace ex_Jeux
                 cote = value;
                 OnPropertyChanged();
             }
+        } 
+        public string Info
+        {
+            get => titre + ": " + desc;
         }
 
         private void OnPropertyChanged([CallerMemberName] string propertyName = "")
