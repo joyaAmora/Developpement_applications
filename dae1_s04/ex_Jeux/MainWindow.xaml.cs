@@ -149,7 +149,7 @@ namespace ex_Jeux
               "Portable Network Graphic (*.png)|*.png";
             if (op.ShowDialog() == true)
             {
-               imgPhoto.Source = new BitmapImage(new Uri(op.FileName));
+               JeuSelectionne.ImagePath = op.FileName;
             }
         }
     }
