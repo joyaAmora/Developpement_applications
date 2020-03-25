@@ -1,0 +1,41 @@
+﻿<Window x:Class="SchoolManagement.UI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SchoolManagement.UI"
+        mc:Ignorable="d"
+        DataContext="{Binding RelativeSource={RelativeSource self}}"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid Margin="5">
+        <StackPanel>
+             <Menu>
+                <MenuItem Header="Fichier"></MenuItem>
+                <MenuItem Header="Menu"></MenuItem>
+                <MenuItem Header="Edition"></MenuItem>
+                <MenuItem Header="Affichage"></MenuItem>
+                <MenuItem Header="Enregistrement">
+                    <MenuItem Header="Nouveau"></MenuItem>
+                </MenuItem>
+             </Menu>
+                <DataGrid ItemsSource="{Binding Students}" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Prenom" Binding="{Binding FirstName}"/>
+                    <DataGridTextColumn Header="Nom" Binding="{Binding LastName}"/>
+                    <DataGridTextColumn Header="Numero" Binding="{Binding RegistrationNumber}"/>
+                    <DataGridTemplateColumn Header="Actions">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button>Modifier</Button>
+                                    <Button>Supprimer</Button>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+       
+    </Grid>
+</Window>

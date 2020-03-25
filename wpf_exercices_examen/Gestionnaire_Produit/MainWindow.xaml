@@ -1,0 +1,79 @@
+﻿<Window x:Class="Gestionnaire_Produit.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="namespace:wpf_exercices_examen"
+        xmlns:other="clr-namespace:wpf_models;assembly=wpf_models"  
+        mc:Ignorable="d"
+        DataContext="{Binding RelativeSource={RelativeSource Self}}"
+        Title="MainWindow" Height="450" Width="800">
+
+    <StackPanel>
+        <Menu VerticalAlignment="Top" Height="25" Background="LightGray">
+            <MenuItem Width="50" Height="25"  HorizontalAlignment="Left" Header="Fichier">
+                <MenuItem Header="Sous menu"></MenuItem>
+            </MenuItem>
+            <MenuItem Width="50" HorizontalAlignment="Left" Header="Edition"></MenuItem>
+            <MenuItem Width="60" HorizontalAlignment="Left" Header="Affichage"></MenuItem>
+        </Menu>
+        <Grid>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="250"></ColumnDefinition>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <StackPanel VerticalAlignment="Top" Orientation="Horizontal">
+                <Label>Liste des produits</Label>
+                <Button>Ajouter</Button>
+            </StackPanel>
+            
+            <ListView x:Name="listView" Height="335" Margin="5 25 5 5" ItemsSource="{Binding Products}"
+                  SelectedItem="{Binding SelectedProduct}" SelectionChanged="listView_SelectionChanged">
+                <ListView.ItemTemplate>
+                    <DataTemplate DataType="{x:Type other:Produit}">
+                        <StackPanel>
+                            <TextBlock Text="{Binding ShortDesc}" HorizontalAlignment="Left"></TextBlock>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <StackPanel Grid.Column="1" Margin="5">
+                <Grid Height="250">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Label VerticalAlignment="Center" Grid.Row="0">UPC:</Label>
+                    <Label VerticalAlignment="Center" Grid.Row="1">Code:</Label>
+                    <Label VerticalAlignment="Center" Grid.Row="2">Short description:</Label>
+                    <Label VerticalAlignment="Center" Grid.Row="3">Description:</Label>
+                    <Label VerticalAlignment="Center" Grid.Row="4">Category:</Label>
+                    <TextBox VerticalAlignment="Center" Grid.Row="0" Grid.Column="1" Text="{Binding SelectedProduct.Upc}"></TextBox>
+                    <TextBox VerticalAlignment="Center" Grid.Row="1" Grid.Column="1" Text="{Binding SelectedProduct.Code}"></TextBox>
+                    <TextBox VerticalAlignment="Center" Grid.Row="2" Grid.Column="1" Text="{Binding SelectedProduct.ShortDesc}"></TextBox>
+                    <TextBox VerticalAlignment="Center" Grid.Row="3" Grid.Column="1" Text="{Binding SelectedProduct.Desc}"></TextBox>
+                    <ComboBox VerticalAlignment="Center" Grid.Row="4" Grid.Column="1" Text="{Binding SelectedProduct.Category}" x:Name="cat"
+                              SelectedItem="{Binding SelectedProduct.Category}" ItemsSource="{Binding Categories}"/>
+
+                </Grid>
+            </StackPanel>
+
+        </Grid>
+        <StatusBar>Produit sélectionné:</StatusBar>
+    </StackPanel>
+
+</Window>
+
